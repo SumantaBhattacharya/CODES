@@ -301,3 +301,5 @@ So front + size would give us the position after the last element
 
 The % capacity makes it circular
 ```
+
+![Queue-Linked-List-Implementation](https://media.geeksforgeeks.org/wp-content/uploads/20250325130840080788/Queue-Linked-List-Implementation_.webp)
