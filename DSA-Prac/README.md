@@ -303,3 +303,11 @@ The % capacity makes it circular
 ```
 
 ![Queue-Linked-List-Implementation](https://media.geeksforgeeks.org/wp-content/uploads/20250325130840080788/Queue-Linked-List-Implementation_.webp)
+
+- **Linked List Queue:** *More flexible, dynamic size.*
+- **Lircular Array Queue:** *More memory efficient, fixed size.*
+
+```
+Stack - [69, 68, 420, 440, 101]
+Queue - [101, 440, 420, 68, 69]
+```
