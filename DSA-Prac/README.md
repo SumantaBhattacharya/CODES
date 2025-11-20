@@ -311,3 +311,8 @@ The % capacity makes it circular
 Stack - [69, 68, 420, 440, 101]
 Queue - [101, 440, 420, 68, 69]
 ```
+
+The "Costly Enqueue" Approach Concept:
+
+- stack1 = Main storage (elements in queue order)
+- stack2 = Temporary helper for reversing
