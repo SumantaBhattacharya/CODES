@@ -203,16 +203,16 @@ public class Nto1 {
     }
 
     public static int ReverseOfANumber_2 (int n) {
-        int sum = 0;
+        int sum = 0; // we need to need the updated reversed part if the number
         return helper(n, sum);
     }
 
     private static int helper(int n, int sum) {
         if (n == 0) {
-            return sum;
+            return sum; // we need to return sum when n becomes 0
         }else{
             int last_digit = n % 10;
-            sum = sum * 10 + last_digit;
+            sum = sum * 10 + last_digit; 
 
             // inside helper pass the updated n and stored num in sum to update it further
             return helper(n/10, sum);
