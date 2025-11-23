@@ -35,24 +35,32 @@ public class Sorted {
         if (arr == null || arr.length <= 1) { // arr.length gives an integer value we cant comapre it with boolean so what we do is we check if the array itself is empty
             return true;
         };
-
-        // we would need an index parameter to reduce the repitation of sorted elements
+        // we would need an index parameter to reduce the repitation of sorted elements basically for going to the next element and compare it with i+1
         int index = 0;
         return isSortedRecursively_Helper(arr, index);
     }
 
     private static boolean isSortedRecursively_Helper(int[] arr, int idx) {
          // base case - we have to return when the index reaches to the last element
-         if (idx == arr.length - 1) {
-             return true; 
+         if (idx == arr.length - 1) {// here we didnt needed to check the last element because we are comparing the initial element with the next element 
+            return true; // when it able to reach to the last element that means the array is sorted
          }else{// main logic starts here
             if (arr[idx] <= arr[idx+1]) { // if the same pair is sorted move to the next element
                 return isSortedRecursively_Helper(arr, idx+1);
             }else{ // if not sorted return false
                 return false;
             }
-         }
+
+        }
     }
+
+    public static boolean isSortedRecursively_2(int[] arr, int idx) {
+        if (idx == arr.length - 1) { // base case
+            return true;
+        }
+
+        return arr[idx] <= arr[idx+1] && isSortedRecursively_2(arr, idx+1); // one liner if idx <= idx+1 then idx+1
+    };
 
 }
 
