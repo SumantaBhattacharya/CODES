@@ -316,3 +316,34 @@ The "Costly Enqueue" Approach Concept:
 
 - stack1 = Main storage (elements in queue order)
 - stack2 = Temporary helper for reversing
+
+### ***Rotated Binary Search Algorithm***
+- **i.** `arr[mid] == target`. *else*
+  - **ii.** check `arr[start] <= arr[mid]` 
+    - **ii.i.** *At least one half is always sorted (even if both might be)*
+    - **ii.i.ii.** *if false, left half is not sorted, the right half must be sorted.*
+      - **ii.i.ii.i.** *When RIGHT half is sorted* 
+        - **ii.i.ii.i.i.** `target >= arr[mid] && target <= arr[end]`
+           - **ii.i.ii.i.i.i.** *if true,* 
+              - **i.** *Search right half*
+              - **ii.** `mid + 1`
+           - **ii.i.ii.i.i.ii.** *if false, No extra range check needed for the unsorted half. We search it because the target isn't in the sorted half.*
+             - **i.** *Search left half.* 
+             - **ii.** `mid - 1`
+      - **ii.i.ii.ii.** *When LEFT half is sorted* 
+        - **ii.i.ii.ii.i.** `target >= arr[start] && target <= arr[mid]`
+          - **ii.i.ii.ii.i.i.** if true, 
+            - **i.** *Search left half*
+            - **ii.** `mid - 1`
+          - **ii.i.ii.ii.i.ii.** *if false, No extra range check needed for the unsorted half. We search it because the target isn't in the sorted half.*
+            - **i.** *Search right half*
+            - **ii.** `mid + 1`
+    - **ii.i.iii.** *if true, left half is sorted, the right half can be sorted or unsorted*
+      - **ii.i.iii.i.** *When LEFT half is sorted* 
+        - **ii.i.iii.i.i.** `target >= arr[start] && target <= arr[mid]`
+           - **ii.i.iii.i.i.i.** *if true,* 
+              - **i.** *Search left half* 
+              - **ii.** `mid - 1`
+          - **ii.i.iii.i.i.ii.** *if false, No extra range check needed for the unsorted half. We search it because the target isn't in the sorted half.*
+            - **i.** *Search right half* 
+            - **ii.** `mid + 1`
