@@ -350,3 +350,31 @@ Queue - [101, 440, 420, 68, 69]
 
 When skipping characters:
 - Use `!=` with `&&`  OR  Use `==` with `||`
+
+### ***Subsets*** 
+> *A subset is any/all possible combination of elements from a given set, including the empty set and the set itself.*
+
+`Note:` *In sets, order doesn't matter. Only membership matters.*
+
+```
+Set: {A, B, C}
+
+All Subsets (8 total):
+
+{} (empty set)
+
+{A}
+
+{B}
+
+{C}
+
+{A, B}
+
+{A, C} 
+
+{B, C}
+
+{A, B, C} (the set itself)
+```
+
