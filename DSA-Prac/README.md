@@ -312,10 +312,10 @@ Stack - [69, 68, 420, 440, 101]
 Queue - [101, 440, 420, 68, 69]
 ```
 
-The "Costly Enqueue" Approach Concept:
+#### The `"Costly Enqueue"` Approach Concept:
 
-- stack1 = Main storage (elements in queue order)
-- stack2 = Temporary helper for reversing
+- `stack1` = **Main storage** (*elements in queue order*)
+- `stack2` = **Temporary helper for reversing**
 
 ### ***Rotated Binary Search Algorithm***
 - **i.** `arr[mid] == target`. *else*
@@ -347,3 +347,6 @@ The "Costly Enqueue" Approach Concept:
           - **ii.i.iii.i.i.ii.** *if false, No extra range check needed for the unsorted half. We search it because the target isn't in the sorted half.*
             - **i.** *Search right half* 
             - **ii.** `mid + 1`
+
+When skipping characters:
+- Use `!=` with `&&`  OR  Use `==` with `||`
