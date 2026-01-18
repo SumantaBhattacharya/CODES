@@ -348,8 +348,8 @@ Queue - [101, 440, 420, 68, 69]
             - **i.** *Search right half* 
             - **ii.** `mid + 1`
 
-When skipping characters:
-- Use `!=` with `&&`  OR  Use `==` with `||`
+`When skipping characters:`
+- **Use** `!=` **with** `&&`  ***OR***  **Use** `==` **with** `||`
 
 ### ***Subsets*** 
 > *A subset is any/all possible combination of elements from a given set, including the empty set and the set itself.*
