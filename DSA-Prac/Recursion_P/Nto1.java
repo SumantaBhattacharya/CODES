@@ -25,6 +25,9 @@ public class Nto1 {
 
         System.out.print("\nReverseANumber: ");
         ReverseANumber(1234);
+
+        String ReverseString = reverseString("MOM");
+        System.out.println(ReverseString);
     }
 
     public static void printNto1(int n) {
@@ -219,6 +222,74 @@ public class Nto1 {
         }
     }
 
+    private static String reverseString(String string) {
+        if (string.isEmpty() == true) {
+            return "";
+        }else{
+            // get the last character
+            char last_character = string.charAt(string.length() -1);
+
+            // remove the last character
+            return last_character + reverseString(string.substring(0, string.length() -1));
+
+        /*in recursion, we build the result backwards:
+        Get last character
+        Recursively reverse the rest
+        Put last character FIRST in the result
+        
+        Visual:
+        "MOM" → 'M' + reverse("MO")
+        "MO" → 'O' + reverse("M")
+        "M" → 'M' + reverse("") reached the base condition → stop
+        ...
+        Eventually: 'M' + 'O' + 'M' = "MOM"
+        */
+        
+        }
+    }
+
+    public static String reverseAString(String str){
+       StringBuilder result = new StringBuilder();
+       int index = str.length() - 1; // Without -1, you'd get: StringIndexOutOfBoundsException "HELLO" str.charAt(5); Index 5 doesn't exist! Only 0-4!
+       // reverseAStringHelper(str, index, result);
+       //  reverseAStringHelper(str, result);
+       reverseAStringHelper(str, str.length() - 1);
+       return result.toString();
+    }
+
+    private static void reverseAStringHelper(String str, int index, StringBuilder result) {
+       /*if (str.isEmpty() == true) {
+          return;*/ // Wrong because we are not reducing the string here.
+        if(index < 0){
+            return;
+        }else{
+          char last_character = str.charAt(index);
+          result.append(last_character);
+
+          reverseAStringHelper(str, index - 1, result); // in this process we are just chekcing each charcter in the string and reversing it
+       }
+    }
+
+    private static void reverseAStringHelper(String str, int idx) {
+        if(idx < 0){
+            return;
+        }else{// TC-O(n) 
+          System.out.print(str.charAt(idx));
+          reverseAStringHelper(str, idx - 1);// from the last index to first index until it reach to 0th index
+       }
+    }
+
+    private static void reverseAStringHelper(String str, StringBuilder result) {
+        if(str.isEmpty() == true){
+            return;
+        }else{
+          char last_character = str.charAt(str.length() - 1);
+          result.append(last_character);
+
+          reverseAStringHelper(str.substring(0, str.length() -1), result);
+       }
+    }
+
     public static boolean palindrome (int n) {
         sum = 0; // sum is global, so just reset before each call
         return ReverseOfANumber(n) == n; // its checking is the reverse of a number would match to the orginal passed here
@@ -261,6 +332,9 @@ public class Nto1 {
         return countHelper(n/10, count);
 
     }
+
+    // Qs. Find the 1st & last occurance of an element in string
+    // public static 
 
 }
 
