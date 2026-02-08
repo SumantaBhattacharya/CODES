@@ -32,6 +32,9 @@ public class Nto1 {
         String str = "axbcxxd";
         String moveAllX_result = moveAllX(str, 0, 0, "");
         System.out.println("moveAllX: " + moveAllX_result);
+
+        System.out.println("removeDuplicates: " + removeDuplicates("abbccda"));
+        System.out.println("removeAllDuplicates: " + removeAllDuplicates("abbccda"));
     }
 
     public static void printNto1(int n) {
@@ -455,7 +458,56 @@ public class Nto1 {
     }
 
     // Qs. Remove duplicates in a string "abbccda"
-    
+    public static String removeDuplicates(String str) {
+        int index = 0;
+        // String newString = "";
+        StringBuilder newString = new StringBuilder();
+        return removeDuplicates_Helper(str, index, newString);
+    }
+
+    private static String removeDuplicates_Helper(String str, int index, StringBuilder newString) {
+       
+        // Base case
+        if (index == str.length()) {
+            return newString.toString(); // coverting StringBuilder to String
+        }
+
+        // logic
+        if (newString.toString().contains(String.valueOf(str.charAt(index)))) { // (newString.indexOf(String.valueOf(str.charAt(index))) == -1) still O(n²) because indexOf() is O(n)
+            // if the newString contains the character at the index then do not add it to the newString
+            return removeDuplicates_Helper(str, index+1, newString);
+        }else{
+            newString.append(str.charAt(index));
+            return removeDuplicates_Helper(str, index+1, newString);
+        }
+
+    }
+
+
+    public static String removeAllDuplicates(String str) {
+        boolean[] map = new boolean[26]; // 26 characters in the alphabet
+        int index = 0;
+        StringBuilder newString = new StringBuilder();
+        removeAllDuplicates_Helper(str, index, newString, map);
+        return newString.toString();
+    }
+
+    private static void removeAllDuplicates_Helper(String str, int idx, StringBuilder newString, boolean[] map) {
+
+        if (idx == str.length()) {
+            // System.out.println(newString);
+            return;
+        }
+
+        if (map[str.charAt(idx) - 'a'] == true){ // - a to get the index of the character in the alphabet array 0-25 = 26 of total characters
+            removeAllDuplicates_Helper(str, idx+1, newString, map);
+        }else{// initially all will be false. if false then add it to the newString and mark it as true so once again when we enounter the same character it will not be added to the newString as it already been marked true
+            newString.append(str.charAt(idx));
+            map[str.charAt(idx) - 'a'] = true; // mark it as true so that we dont add it again
+            removeAllDuplicates_Helper(str, idx+1, newString, map);
+        }
+
+    }
 
 }
 
