@@ -12,7 +12,7 @@ public class Nto1 {
         System.out.print("printNto1_print1toN: ");
         printNto1_print1toN(5);
 
-        System.out.println("printFactorialOfNumber: " + printFactorialOfNumber(5));
+        System.out.println("\nprintFactorialOfNumber: " + printFactorialOfNumber(5));
 
         System.out.println("printSumOfNumber: " + printSumOfNumber(5)); 
 
@@ -27,7 +27,11 @@ public class Nto1 {
         ReverseANumber(1234);
 
         String ReverseString = reverseString("MOM");
-        System.out.println(ReverseString);
+        System.out.println("\nreverseString: " + ReverseString);
+
+        String str = "axbcxxd";
+        String moveAllX_result = moveAllX(str, 0, 0, "");
+        System.out.println("moveAllX: " + moveAllX_result);
     }
 
     public static void printNto1(int n) {
@@ -373,7 +377,7 @@ public class Nto1 {
     // idx is the pointer that is pointing to the current element
     private static int[] firstandLastOccuranceRecursively_Helper(String str, char target, int idx, int first_occurance, int last_occurance) {
     // TC-O(n)
-    
+
         // Base case
         if (idx == str.length()) {// if index is reached to the last element of that string stop it
             return new int[] {first_occurance, last_occurance}; // used array because we were returning index of two integers
@@ -426,6 +430,32 @@ public class Nto1 {
         return lastOccurance(str, target, idx-1);
 
     }
+
+    // Qs. Move all 'x' to the end of the string "axbcxxd"
+    public static String moveAllX(String str, int idx, int count, String newString) {// O(n + count) -> O(n + n) -> O(2n) -> O(n) where n is the length of string
+        //Base case
+        if (idx == str.length()) {
+            // System.out.println(newString);
+            // return newString; // return the newString variable as it contains the new string with all the x moved to the end of the string
+            // we can also add the count of x to the newString variable and return it
+            for (int i = 0; i < count; i++) {
+                newString = newString + 'x'; // add x the number of times x exists.
+            }
+            return newString;
+        }
+        
+        // if we encounter x then increment the count else add the encountering elements into the newString variable
+        if (str.charAt(idx) == 'x'){
+            count++;
+            return moveAllX(str, idx+1, count, newString);
+        }else{
+            newString = newString + str.charAt(idx);
+            return moveAllX(str, idx+1, count, newString);
+        }
+    }
+
+    // Qs. Remove duplicates in a string "abbccda"
+    
 
 }
 
