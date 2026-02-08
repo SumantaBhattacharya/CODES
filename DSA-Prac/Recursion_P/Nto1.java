@@ -252,8 +252,8 @@ public class Nto1 {
        StringBuilder result = new StringBuilder();
        int index = str.length() - 1; // Without -1, you'd get: StringIndexOutOfBoundsException "HELLO" str.charAt(5); Index 5 doesn't exist! Only 0-4!
        // reverseAStringHelper(str, index, result);
-       //  reverseAStringHelper(str, result);
-       reverseAStringHelper(str, str.length() - 1);
+       reverseAStringHelper(str, result);
+       //    reverseAStringHelper(str, str.length() - 1);
        return result.toString();
     }
 
@@ -287,7 +287,7 @@ public class Nto1 {
           result.append(last_character);
 
           reverseAStringHelper(str.substring(0, str.length() -1), result);
-       }
+        }
     }
 
     public static boolean palindrome (int n) {
@@ -334,7 +334,98 @@ public class Nto1 {
     }
 
     // Qs. Find the 1st & last occurance of an element in string
-    // public static 
+    public static void firstandLastOccuranceItaratively(String str, char target) {
+        int first_occurance = -1; // -1 means empty it can never be valid index
+        int last_occurance = -1;
+        for (int i = 0; i < str.length(); i++) {// for loop indexing each of every element passed in a string
+            if (str.charAt(i) == target) { // record the first occurance
+                // only update the first_occurance if its empty
+                if (first_occurance == -1) {
+                    first_occurance = i;
+                }
+                
+                last_occurance = i; // each time we find a target after the first occurance we considered it to be last_occurance
+            } 
+        }
+
+        if (first_occurance == -1) {
+            System.out.println("Character '" + target + "' not found in \"" + str + "\"");
+        } else {
+            System.out.println("first_occurance: " + first_occurance);
+            System.out.println("last_occurance: " + last_occurance);
+        }
+    }
+
+    public static void firstandLastOccuranceRecursively(String str, char target) {
+        int first_occurance = -1; // -1 means empty it can never be valid index
+        int last_occurance = -1; // to get the valid index 
+        int index = 0; // as we are starting first the first index to last index
+        int[] result = firstandLastOccuranceRecursively_Helper(str, target, index, first_occurance, last_occurance);
+
+        if (result[0] == -1) {
+            System.out.println("Character '" + target + "' not found in \"" + str + "\"");
+        }else{
+            System.out.println("First occurrence: " + result[0]);
+            System.out.println("Last occurrence: " + result[1]);
+        }
+    }
+
+    // idx is the pointer that is pointing to the current element
+    private static int[] firstandLastOccuranceRecursively_Helper(String str, char target, int idx, int first_occurance, int last_occurance) {
+    // TC-O(n)
+    
+        // Base case
+        if (idx == str.length()) {// if index is reached to the last element of that string stop it
+            return new int[] {first_occurance, last_occurance}; // used array because we were returning index of two integers
+        }
+
+        // logic
+        if (str.charAt(idx) == target) {// if we find the target element
+            // and we see first_occurance variable is empty then update it for the first and only time
+            if (first_occurance == -1) {
+                first_occurance = idx; // we are storing the position in the first_occurance of the first occurance of that element
+            };
+
+            // each time we see the target element update it with the last_occurance variable without a condition
+            last_occurance = idx;
+            
+        }
+
+        // in recursion, we have to increment the pointer to check each element to find the occurances of the target element
+        return firstandLastOccuranceRecursively_Helper(str, target, idx+1, first_occurance, last_occurance);
+
+    };
+
+    // In Java, you CANNOT give default values to method parameters like in some other languages (Python, JavaScript, C++). 
+    public static int firstOccurance(String str, char target, int idx){
+        // Base case
+        if (idx == str.length()) {
+            return -1;// increment the idx to the last postion
+        }
+
+        if (str.charAt(idx) == target) {
+                return idx;
+        }
+
+        return firstOccurance(str, target, idx+1);
+    }
+
+    public static int lastOccurance(String str, char target, int idx){// idx = str.length() -1
+
+        // int last_occurance = -1; as we are going though each last occurance of the element we cannot make it empty each time
+        
+        // Base Case
+        if (idx < 0) { // the last index cannot be smaller than the first index
+            return -1;
+        }
+
+        if (str.charAt(idx) == target) {
+                return idx;
+        }
+
+        return lastOccurance(str, target, idx-1);
+
+    }
 
 }
 

@@ -51,7 +51,7 @@ public class Sorted {
                 return false;
             }
 
-        }
+        }// TC-O(n)
     }
 
     public static boolean isSortedRecursively_2(int[] arr, int idx) {

@@ -1,8 +1,10 @@
 package Recursion_P;
 
+import java.util.ArrayList;
+
 public class Subsets {
     public static void main(String[] args) {
-        subset_Subsequence("", "ABC");
+        System.out.println(subset_Subseq("", "ABC", new ArrayList<>()));
     }
 
     // code is SEQUENTIAL
@@ -15,14 +17,35 @@ public class Subsets {
         } else {
             char ch = unprocessed.charAt(0);
 
+            // i. add it ii. or, ignore it
             // processed initially will be empty.  the parent remembering its original processed="" when creating the second child
             subset_Subsequence(processed + ch, unprocessed.substring(1)); // Each recursive call has its OWN COPY of processed, processed is local not shared!.
             // BOTH function calls WILL execute because they're on sequential lines of code, and ALL code in a function executes unless there's a return THIS LINE ALWAYS EXECUTES after Line 1 finishes!
-            subset_Subsequence(" Second_Branch:- "+processed, unprocessed.substring(1));
+            subset_Subsequence("\t" + processed,      unprocessed.substring(1)); // this getting executed after each return from the first recursion call
 
         }
 
     }
+
+    private static ArrayList<String> subset_Subseq(String processed, String unprocessed, ArrayList<String> list) {
+
+        // base condition
+        if (unprocessed.isEmpty() == true) {
+            System.out.println(processed);
+            list.add(processed); // to the function call form where it was called
+            return list;
+        } else {
+            char ch = unprocessed.charAt(0);
+
+            // i. add it ii. or, ignore it
+           
+            subset_Subseq(processed + ch, unprocessed.substring(1), list); 
+            subset_Subseq("\t" + processed,      unprocessed.substring(1), list);
+        }
+
+        return list;
+    }
+
 
 }
 
