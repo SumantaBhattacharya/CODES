@@ -35,6 +35,9 @@ public class Nto1 {
 
         System.out.println("removeDuplicates: " + removeDuplicates("abbccda"));
         System.out.println("removeAllDuplicates: " + removeAllDuplicates("abbccda"));
+
+        int countPaths = countPathsInMaze(0, 0, 3, 3);
+        System.out.println("countPaths:" + countPaths);
     }
 
     public static void printNto1(int n) {
@@ -494,11 +497,13 @@ public class Nto1 {
 
     private static void removeAllDuplicates_Helper(String str, int idx, StringBuilder newString, boolean[] map) {
 
+        // Base case
         if (idx == str.length()) {
             // System.out.println(newString);
             return;
         }
 
+        // logic - time complexity is O(n)
         if (map[str.charAt(idx) - 'a'] == true){ // - a to get the index of the character in the alphabet array 0-25 = 26 of total characters
             removeAllDuplicates_Helper(str, idx+1, newString, map);
         }else{// initially all will be false. if false then add it to the newString and mark it as true so once again when we enounter the same character it will not be added to the newString as it already been marked true
@@ -507,6 +512,69 @@ public class Nto1 {
             removeAllDuplicates_Helper(str, idx+1, newString, map);
         }
 
+    }
+
+    // Qs. Count total paths in a maze to move from (0,0) to (n,m)
+    public static int countPathsInMaze(int i, int j, int n, int m) { 
+      /*
+           n = total rows, 
+           m = total columns
+
+           n = 3, m = 3
+           n*m = 3*3 = 9 matrix 
+
+          [0,0][0,1][0,2]
+          [1,0][1,1][1,2]
+          [2,0][2,1][2,2] 3*3 matrix
+
+          we can move only in two directions
+          1. move right
+          2. move down
+
+          paths
+          (0,0) -> (0,1) -> (0,2) -> (1,2) -> (2,2)
+          (0,0) -> (0,1) -> (1,1) -> (2,1) -> (2,2)
+          (0,0) -> (0,1) -> (1,1) -> (1,2) -> (2,2)
+          (0,0) -> (1,0) -> (1,1) -> (1,2) -> (2,2)
+          (0,0) -> (1,0) -> (1,1) -> (2,1) -> (2,2)
+          (0,0) -> (1,0) -> (2,0) -> (2,1) -> (2,2)
+
+          (i,j) 
+          i. (i+1, j) move down
+          ii. (i, j+1) move right
+          iii. triverse until i = n-1 && j = m-1
+
+          total paths = count(i+1, j) + count(i, j+1)
+
+          At ANY cell (i,j):
+          If at destination (i=n-1, j=m-1) → Found 1 path
+          If out of bounds (i≥n or j≥m) → Not a valid path
+
+          i+1 = down and j+1 = right is because thats how 2D arrays/matrices work
+          Row increases DOWN (Row number increases as you go DOWN)
+          Column increases RIGHT (Column number increases as you go RIGHT)
+
+          the question is from position (i,j), how many ways to reach (n-1,m-1)
+
+          https://assets.leetcode.com/uploads/2021/08/02/lc-unique2.jpg
+      */
+    
+        if (i == n || j == m) {
+            return 0;
+        }
+
+        if (i==n-1 && j==m-1) {//arrays are 0-indexed
+            return 1;
+        }
+
+        // ↓ move downwards - its a row index (vertical)
+        int move_down = countPathsInMaze(i+1, j, n, m);
+
+        // → move right - its a column index (horizontal)
+        int move_right = countPathsInMaze(i, j+1, n, m);
+
+         // Total paths = paths going DOWN + paths going RIGHT
+        return move_down + move_right;
     }
 
 }

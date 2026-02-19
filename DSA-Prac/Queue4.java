@@ -1,6 +1,6 @@
 import java.util.Queue;
 import java.util.ArrayDeque;
-import java.util.LinkedList;
+// import java.util.LinkedList;
 
 public class Queue4 {// Queue is an interface (not a class). Objects are can be created of a class not interface
     public static void main(String[] args) {
