@@ -1,5 +1,10 @@
 # **Redux App**
 
+### ***[Learn Redux Toolkit in one video 🔥🔥🚀 | Hindi](https://youtu.be/XwGNhppX4as?si=nJmo45NClRbit0Rv)***
+[![Learn Redux Toolkit in one video 🔥🔥🚀 | Hindi](https://img.youtube.com/vi/XwGNhppX4as/0.jpg)](https://youtu.be/XwGNhppX4as?si=nJmo45NClRbit0Rv)
+
+Since the video page lacks a text transcript, I couldn't extract specific learning points. If you have notes on what you learned or can share a transcript, I'd be happy to help you create a detailed "What I Learned" section for this entry as well.
+
 To start the frontend server run the following command in the terminal:
 ```bash
 npm run start # as this project was bootstrapped with `npx create-react-app redux-app`
@@ -267,8 +272,7 @@ and role management.
 <!-- ![User Management](User_Management.png) -->
 <!-- ![UsersProduct_DB](UsersProduct_DB.png) -->
 
-`Product information available in English only. The platform supports i18n for UI elements. User-generated content (reviews/comments) is preserved in its original language to maintain authenticity.`
-
-# ***[React JS Interview Questions ( Breadcrumbs ) - Frontend Machine Coding Interview Experience](https://youtu.be/yeNgh2gw104?si=tTbFwcLDiySbCWnR)***
+### ***[React JS Interview Questions ( Breadcrumbs ) - Frontend Machine Coding Interview Experience](https://youtu.be/yeNgh2gw104?si=tTbFwcLDiySbCWnR)***
 [![React JS Interview Questions ( Breadcrumbs ) - Frontend Machine Coding Interview Experience](https://img.youtube.com/vi/yeNgh2gw104/0.jpg)](https://youtu.be/yeNgh2gw104?si=tTbFwcLDiySbCWnR)
 
+`Product information available in English only. The platform supports i18n for UI elements. User-generated content (reviews/comments) is preserved in its original language to maintain authenticity.`
