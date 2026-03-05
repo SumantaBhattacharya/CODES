@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {add} from '../store/cartSlice.js';
 
 import { fetchProductById } from '../store/productSlice.js';
+import { STATUSES } from '../store/productSlice.js';
 
 const ProductDts = () => {
     const { productId } = useParams();
@@ -30,7 +31,7 @@ const ProductDts = () => {
     
     // Fetch ALL products first
     useEffect(() => {
-        const fetchAllProducts = async () => {
+        const fetchAllProduct = async () => {
             // try {
 
                 // setLoading(true);
@@ -46,8 +47,13 @@ const ProductDts = () => {
               }*/
 
             // product is an object, doesn't have .length
-              if (status === "idle" && !product) {// or, product === null
+              
+              //it was preventing fetching a new product if one is already loaded in the Redux store.
+              /*if (status === "idle" && !product) {// or, product === null
                    dispatch(fetchProductById(productId));
+              }*/
+              if (productId && (!product || product.id !== Number(productId))) {
+                dispatch(fetchProductById(productId));
               }
             /*}catch(err){
                 console.error("Error fetching products:", err);
@@ -56,13 +62,14 @@ const ProductDts = () => {
                 // setLoading(false);
                 dispatch(setStatus('idle'));
             }*/
+
         };
-        fetchAllProducts();
+        fetchAllProduct();
     }, [
-        // productId
         dispatch, 
-        status, 
-        // product.length
+        // status, 
+        // product.length,
+        productId,
         product
     ]);
 
@@ -74,7 +81,7 @@ const ProductDts = () => {
 
     const isMobile = width < 768;
 
-    if (status === "loading") {
+    if (status === STATUSES.LOADING) {
         return (
             <div 
             style={{
@@ -118,7 +125,8 @@ const ProductDts = () => {
     }
 
     // Add this after the loading check
-    if (status === "error") {
+    // if (status === "error") {
+    if (status === STATUSES.ERROR) {
         return (
             <div 
             style={{

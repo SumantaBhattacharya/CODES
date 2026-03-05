@@ -42,8 +42,7 @@ const Testimonials = () => {
           <h1 className="testimonials-title">Customer Testimonials</h1>
           <div className="testimonials-underline"></div>
           <p style={{fontFamily: 'MyCustomFont-Regular'}} className="testimonials-subtitle">
-            Hear what our users say about us. We're always looking for ways to improve. 
-            If you have a positive experience with us, leave a review.
+            Hear what our users say about us. 
           </p>
         </div>
 
@@ -112,7 +111,7 @@ const Testimonials = () => {
           color: #9ca3af;
           max-width: 600px;
           line-height: 1.6;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
         }
 
         .testimonials-grid {
