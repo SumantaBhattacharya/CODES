@@ -17,6 +17,7 @@ import Contact from "./Components/layout/Footer/Contact.js";
 import {Social} from "./Components/layout/Footer/Social.js";
 import Testimonials from "./Components/layout/Footer/Testimonials.js";
 import Breadcrums from "./Components/Breadcrums.js";
+import SearchResults from "./Components/layout/SearchResults.js";
 
 import { Provider } from "react-redux";
 import store from "./store/store.js";
@@ -40,6 +41,10 @@ function App() {
             <Route path="/contact-us" element={<Contact />} />
             <Route path="/social-links" element={<Social />} />
             <Route path="/customer-testimonials" element={<Testimonials />} />
+
+                    {/* 2. Add the new route for search results */}
+        <Route path="/search" element={<SearchResults />} />
+
 
             <Route path="*" element={<Page404 />} />
           </Routes>

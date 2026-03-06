@@ -18,6 +18,12 @@ i18next
           home: "Home",
           cart: "Cart",
           cartItems: "CART ITEMS",
+          menuLabel: "MENU",
+          closeLabel: "CLOSE",
+
+          // search
+          searchPlaceholder: "Search products...",
+          loadingProducts: "Loading Products...",
 
           // products
           productsPageHeading: "OUR PRODUCTS",
@@ -108,6 +114,12 @@ i18next
           home: "Accueil",
           cart: "Panier",
           cartItems: "ARTICLES DU PANIER",
+          menuLabel: "MENU",
+          closeLabel: "FERMER",
+
+          // search
+          searchPlaceholder: "Rechercher des produits...",
+          loadingProducts: "Chargement des produits...",
 
           // products
           productsPageHeading: "NOS PRODUITS",
@@ -198,6 +210,12 @@ i18next
           home: "होम",
           cart: "कार्ट",
           cartItems: "कार्ट आइटम",
+          menuLabel: "मेनू",
+          closeLabel: "बंद करें",
+
+          // search
+          searchPlaceholder: "उत्पाद खोजें...",
+          loadingProducts: "उत्पाद लोड हो रहे हैं...",
 
           // products
           productsPageHeading: "हमारे उत्पाद",

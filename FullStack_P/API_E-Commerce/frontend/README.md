@@ -66,7 +66,7 @@ It gives you back a single .reducer function for the store.
 It also gives you back an .actions object for your components.
 
 ```bash
-npm i zod axios i18next react-i18next i18next-browser-languagedetector qrcode.react --registry=https://registry.npmjs.org --verbose --loglevel=verbose --progress=true --timing
+npm i zod axios i18next react-i18next i18next-browser-languagedetector qrcode.react lodash --registry=https://registry.npmjs.org --verbose --loglevel=verbose --progress=true --timing 
 ```
 <!-- react-i18next@12.3.1 i18next@22.5.1 i18next-browser-languagedetector@7.1.0 -->
 ```bash
@@ -261,6 +261,14 @@ and role management.
 - *`Seller Analytics:`* Dashboard with sales reports, order status, and inventory tracking.
 - *`Notification:`*  Order updates, promotions, and shipping tracking. <!-- sms, mail, in-app -->
 
+- *`Real-time Suggestions`*
+- *`Dynamic and Static data support`*
+- *`Debouncing`*
+- *`Keyboard Navigation`*
+- *`Highlighted Match`*
+- *`Customizable`*
+- *`Loading Indicator`*
+
 #### ***Non - Functional Requirements***
 * *`Scalability:`* Support high traffic and large user base and Catalogs.
 * *`Reliability:`* Ensure 99.99% uptime and handle traffic gracefully.
@@ -268,11 +276,21 @@ and role management.
 * *`Security & Compliance:`* Protect sensitive data, comply with PCI-DSS, GSPR, etc.
 * *`Observability:`* Implement logging, minitoring, and alerting for system health.
 * *`Cost Efficiency:`* Optimize resouce usage while balancing cost and performance.
+- *`Responsiveness`*
+- *`Caching`*
+- *`Accessibility`*
+- *`Compatibility`*
+
+![HLD](HLD.png)
 
 <!-- ![User Management](User_Management.png) -->
 <!-- ![UsersProduct_DB](UsersProduct_DB.png) -->
 
 ### ***[React JS Interview Questions ( Breadcrumbs ) - Frontend Machine Coding Interview Experience](https://youtu.be/yeNgh2gw104?si=tTbFwcLDiySbCWnR)***
 [![React JS Interview Questions ( Breadcrumbs ) - Frontend Machine Coding Interview Experience](https://img.youtube.com/vi/yeNgh2gw104/0.jpg)](https://youtu.be/yeNgh2gw104?si=tTbFwcLDiySbCWnR)
+
+
+### ***[Frontend System Design Questions ( Autosuggestion / Typeahead ) - HLD, LLD, Interview Experience](https://youtu.be/6YrkXWFgiV8?si=Ubjz-pkh-CcTNXHe)***
+[![Frontend System Design Questions ( Autosuggestion / Typeahead ) - HLD, LLD, Interview Experience 🔥🔥](https://img.youtube.com/vi/6YrkXWFgiV8/0.jpg)](https://youtu.be/6YrkXWFgiV8?si=Ubjz-pkh-CcTNXHe)
 
 `Product information available in English only. The platform supports i18n for UI elements. User-generated content (reviews/comments) is preserved in its original language to maintain authenticity.`
