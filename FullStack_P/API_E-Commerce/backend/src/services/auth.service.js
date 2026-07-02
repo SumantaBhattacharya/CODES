@@ -150,3 +150,22 @@ export const getAllUsersService = async() => {
     }
 
 }
+
+// Get all users
+export const getUserByIdService = async(userId) => {
+    const user = await findUserById(userId);
+    
+    if (!user) {
+        throw new ApiError(404, "User not found");
+    }else{
+        const userWithoutSensitiveData = user.toObject();
+        delete userWithoutSensitiveData.password;
+        delete userWithoutSensitiveData.refreshToken;
+
+        return {
+            user: userWithoutSensitiveData,
+            message: "User fetched successfully"
+        };
+    }
+
+}
