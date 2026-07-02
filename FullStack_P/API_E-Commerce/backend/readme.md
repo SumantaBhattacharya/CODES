@@ -1,6 +1,7 @@
 To start the backend server run the following command in the terminal:
 ```bash
 npm run dev
+node --env-file=.env --watch index.js
 ```
 # ***[Handle Errors like a Pro in Express.js 🔥 | Explained in Hindi | Day 19/100](https://youtu.be/udvGMDVyz84?si=H2eS6TPXcZxSGxWC)***  
 [![Handle Errors like a Pro in Express.js 🔥 | Explained in Hindi | Day 19/100](https://img.youtube.com/vi/udvGMDVyz84/0.jpg)](https://youtu.be/udvGMDVyz84?si=H2eS6TPXcZxSGxWC)
