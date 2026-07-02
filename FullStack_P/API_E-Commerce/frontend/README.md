@@ -26,6 +26,7 @@ npm run start # as this project was bootstrapped with `npx create-react-app redu
 
 ```
 npm i express cors cookie-parser jsonwebtoken zod axios --registry=https://registry.npmjs.org --verbose --loglevel=verbose --progress=true --timing
+npm i @tanstack/react-query-devtools
 ```
 
 #### ***[Web Accessibility Tutorial - Keyboard Navigation](https://youtu.be/VyWRmepESoQ?si=ArVZMIL-aYXsJKOU)***  
@@ -50,6 +51,10 @@ npm i express cors cookie-parser jsonwebtoken zod axios --registry=https://regis
 [react-toastify](https://fkhadra.github.io/react-toastify/introduction/)
 [i18next](https://www.i18next.com/overview/getting-started)
 [i18next-browser-languagedetector](https://www.npmjs.com/package/i18next-browser-languagedetector)
+[tanstack-overview](https://tanstack.com/query/latest/docs/framework/react/overview)
+[Default QueryClient](https://tanstack.com/query/v4/docs/reference/QueryClient)
+[initial-query-data](https://tanstack.com/query/latest/docs/framework/react/guides/initial-query-data)
+[tanstack-devtools](https://tanstack.com/query/latest/docs/framework/react/devtools)
 
 ### ***Note:*** 
 - `fetch()` *only rejects/rethrows on network errors (like no internet, DNS failure).*
@@ -57,13 +62,25 @@ npm i express cors cookie-parser jsonwebtoken zod axios --registry=https://regis
 - *In JavaScript, if a function doesn't explicitly return a value, it returns undefined.*
 - *`Async/Await:`* *Syntactic sugar built on top of Promises. It allows you to write asynchronous code that looks like synchronous code*
 -  The word "`thunk`" *is a programming term that means "a piece of code that does some delayed work" Rather than excute some logic now, we can write a function body or code that can be used to perform the work later*.
+- *`thunks`* *lets you write asasynchronous code before dispatching a plain action.*.
 - *`createSlice`* is a function (not a class)
 - *`JSX is a syntax extension`* *for JavaScript that allows you to write HTML-like code in your JavaScript files.*
+- *`Redux`* *is for client-side state (e.g., shopping cart items, dark mode)*
+- *`TanStack Query`* *is for server-state It’s designed to hold data fetched from an API (e.g., the list of products, a single product, user data from the backend like user profiles, comments).*
+*`Server state`* *means local cache that means temporary storage. (When your frontend fetches it, it stores a temporary copy (cache) in the browser's memory.)*
+- *`Redux`* *was created in 2015.*
+- *`TanStack Query`* *(React Query) was first released in 2020.*
+- *`TanStack Query`* *cache is temporary – if you refresh the page, it's gone. It's purely a local, ephemeral cache for server-data.*
+- *`TanStack Query`* *reduces writing of more boilerplate*
+- *`RTK Query`* *is built into @reduxjs/toolkit. *`RTK Query`* *is built on top of Redux Toolkit and does handle server state*
+- *`RTK Query`* *stores its cache inside the Redux store that holds your client-state (cart, UI toggles). (which is client-side state). data that lives only on the client and is synchronous to read and update.*
+- *`Cache invalidation` *is to invalidate the old cached data and cache the new updated data.*
+- *We use lowercase for instances* 
 
-In short:
-You give createSlice an object of reducers.
-It gives you back a single .reducer function for the store.
-It also gives you back an .actions object for your components.
+**In short:**
+- *You give createSlice an object of reducers.*
+- *It gives you back a single .reducer function for the store.*
+- *It also gives you back an .actions object for your components.*
 
 ```bash
 npm i zod axios i18next react-i18next i18next-browser-languagedetector qrcode.react lodash --registry=https://registry.npmjs.org --verbose --loglevel=verbose --progress=true --timing 
@@ -281,7 +298,7 @@ and role management.
 - *`Accessibility`*
 - *`Compatibility`*
 
-![HLD](HLD.png)
+<!-- ![HLD](\img\HLD.png) -->
 
 <!-- ![User Management](User_Management.png) -->
 <!-- ![UsersProduct_DB](UsersProduct_DB.png) -->
@@ -289,8 +306,17 @@ and role management.
 ### ***[React JS Interview Questions ( Breadcrumbs ) - Frontend Machine Coding Interview Experience](https://youtu.be/yeNgh2gw104?si=tTbFwcLDiySbCWnR)***
 [![React JS Interview Questions ( Breadcrumbs ) - Frontend Machine Coding Interview Experience](https://img.youtube.com/vi/yeNgh2gw104/0.jpg)](https://youtu.be/yeNgh2gw104?si=tTbFwcLDiySbCWnR)
 
-
 ### ***[Frontend System Design Questions ( Autosuggestion / Typeahead ) - HLD, LLD, Interview Experience](https://youtu.be/6YrkXWFgiV8?si=Ubjz-pkh-CcTNXHe)***
 [![Frontend System Design Questions ( Autosuggestion / Typeahead ) - HLD, LLD, Interview Experience 🔥🔥](https://img.youtube.com/vi/6YrkXWFgiV8/0.jpg)](https://youtu.be/6YrkXWFgiV8?si=Ubjz-pkh-CcTNXHe)
 
 `Product information available in English only. The platform supports i18n for UI elements. User-generated content (reviews/comments) is preserved in its original language to maintain authenticity.`
+
+Utilities
+- https://fkhadra.github.io/react-toastify/introduction/
+- https://react-icons.github.io/react-icons/
+
+Terminal
+```bash
+npm pack @tanstack/react-query --dry-run 
+--registry=https://registry.npmjs.org                            
+```
