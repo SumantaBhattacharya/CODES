@@ -2,7 +2,10 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 import { registerUserValidationSchema } from "../utils/validationSchema.js";
-import { registerUser, loginUser, logoutUser, refreshAccessTokenService, changeCurrentPasswordService, updateAccountDetailsService, getAllUsersService } from "../services/auth.service.js";
+import { registerUser, loginUser, logoutUser, refreshAccessTokenService, 
+    changeCurrentPasswordService, 
+    updateAccountDetailsService, getAllUsersService,
+getUserByIdService} from "../services/auth.service.js";
 
 import {cookieOptions} from "../config/config.js";
 
@@ -112,6 +115,22 @@ export const getAllUsers = asyncHandler(async (req, res) => {
         result.users,
         result.message,
         `Total users: ${result.totalUsers},`));
+})
+
+
+// Get a user
+export const getAUser = asyncHandler(async (req, res)=>{ //The user is determined by which ID you ask for, not by who is logged in.
+
+    const { userId } = req.params; // from the link
+
+    const getUser = await getUserByIdService(userId);
+
+    return res.status(200).json(new ApiResponse(
+        200,
+        getUser,
+        "User fetched successfully"
+    ))
+
 })
 
 export const updateAccountDetails = asyncHandler(async (req, res) => {
