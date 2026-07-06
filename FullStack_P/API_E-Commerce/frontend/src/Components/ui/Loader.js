@@ -1,0 +1,33 @@
+export const Loader = () => {
+  return (
+    <div className="flex justify-center items-center min-h-[50vh] w-full bg-transparent">
+      <div
+        style={{
+          width: "120px",
+          height: "20px",
+          background:
+            "linear-gradient(#000 50%,#0000 0)," +
+            "linear-gradient(#0000 50%,#000 0)," +
+            "linear-gradient(#000 50%,#0000 0)," +
+            "linear-gradient(#0000 50%,#000 0)," +
+            "linear-gradient(#000 50%,#0000 0)," +
+            "linear-gradient(#0000 50%,#000 0) #ddd",
+          backgroundSize: "calc(100%/6 + 1px) 200%",
+          backgroundRepeat: "no-repeat",
+          animation: "l12 2s infinite",
+        }}
+      />
+      <style>{`
+          @keyframes l12 {
+            0%     {background-position: calc(0*100%/5) 100%,calc(1*100%/5)   0%,calc(2*100%/5) 100%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+            16.67% {background-position: calc(0*100%/5)   0%,calc(1*100%/5)   0%,calc(2*100%/5) 100%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+            33.33% {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5) 100%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+            50%    {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5)   0%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+            66.67% {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5) 100%,calc(4*100%/5) 100%,calc(5*100%/5)   0%}
+            83.33% {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5) 100%,calc(4*100%/5)   0%,calc(5*100%/5)   0%}
+            100%   {background-position: calc(0*100%/5)   0%,calc(1*100%/5) 100%,calc(2*100%/5)   0%,calc(3*100%/5) 100%,calc(4*100%/5)   0%,calc(5*100%/5) 100%}
+          }
+        `}</style>
+    </div>
+  );
+};
