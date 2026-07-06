@@ -55,6 +55,7 @@ npm i @tanstack/react-query-devtools
 [Default QueryClient](https://tanstack.com/query/v4/docs/reference/QueryClient)
 [initial-query-data](https://tanstack.com/query/latest/docs/framework/react/guides/initial-query-data)
 [tanstack-devtools](https://tanstack.com/query/latest/docs/framework/react/devtools)
+[dummyjson#products-search](https://dummyjson.com/docs/products#products-search)
 
 ### ***Note:*** 
 - `fetch()` *only rejects/rethrows on network errors (like no internet, DNS failure).*
@@ -76,6 +77,8 @@ npm i @tanstack/react-query-devtools
 - *`RTK Query`* *stores its cache inside the Redux store that holds your client-state (cart, UI toggles). (which is client-side state). data that lives only on the client and is synchronous to read and update.*
 - *`Cache invalidation` *is to invalidate the old cached data and cache the new updated data.*
 - *We use lowercase for instances* 
+- *hook functions must start with use (to comply with React's Rules of Hooks)*
+- *When a function requires an argument we need to wrap it in a function ?*
 
 **In short:**
 - *You give createSlice an object of reducers.*
@@ -320,3 +323,8 @@ Terminal
 npm pack @tanstack/react-query --dry-run 
 --registry=https://registry.npmjs.org                            
 ```
+
+- `Paginated Queries`
+- `Parallel Queries`
+- `Dependent Queries`
+- `Optimistic Queries`
