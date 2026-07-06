@@ -33,13 +33,15 @@ const Breadcrums = () => {
               /{name}
             </span>
           ): (
-             <span>
+             <span
+             key={breadcrumsPath}
+             >
               /
-              <Link
-              to={breadcrumsPath}
-              key={breadcrumsPath}>
+
+              {/* the <Link> doesn't need a separate key  */}
+
                 {name}
-              </Link>
+             
             </span>
           )
         })}
