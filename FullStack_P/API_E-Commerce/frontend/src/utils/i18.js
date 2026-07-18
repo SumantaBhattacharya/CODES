@@ -206,7 +206,7 @@ i18next
       hi: {
         translation: {
           // navbar
-          logo: "स्कैच",
+          logo: "SCATCH",
           home: "होम",
           cart: "कार्ट",
           cartItems: "कार्ट आइटम",

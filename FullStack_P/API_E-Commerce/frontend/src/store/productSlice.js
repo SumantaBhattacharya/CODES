@@ -38,6 +38,7 @@ const productSlice = createSlice({ // createSlice is a function (not a class), n
             state.status = STATUSES.LOADING;
         })
         .addCase(fetchProducts.fulfilled, (state, action) => {
+            // updates data automatically
             state.data = action.payload;
             state.status = STATUSES.IDLE;
         })
@@ -77,8 +78,8 @@ export default productSlice.reducer;// automatically generates a single reducer 
 //     }
 // }
 
-export const fetchProducts =  createAsyncThunk('products/fetch', async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
+export const fetchProducts =  createAsyncThunk('products/fetch', async () => {// // createAsyncThunk automatically generates action creators (pending, fulfilled, rejected).
+    const res = await fetch("https://fakestoreapi.com/products"); // https://dummyjson.com/products
 
     if (!res.ok) {
         // dispatch(setError(`Failed to fetch products, HTTP error! status: ${res.status}`))
@@ -93,6 +94,8 @@ export const fetchProducts =  createAsyncThunk('products/fetch', async () => {
 
     const data = await res.json();
 
+    console.log(data);
+    
     return data;
 
 });// identifier, 
@@ -113,7 +116,7 @@ export function fetchProductById(productId) {
             
             const data = await res.json();
 
-            dispatch(setProduct(data));
+            dispatch(setProduct(data)); // the product object only stored in dataProduct
             dispatch(setStatus(STATUSES.IDLE));
         }catch(err){
             console.log(err);
