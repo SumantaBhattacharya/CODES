@@ -14,13 +14,15 @@ import Page404 from "./Components/Pages_404";
 import RegandLogin from "./Components/RegandLogin";
 import Privacy_Policy from "./Components/layout/Footer/Privacy_Policy.js";
 import Contact from "./Components/layout/Footer/Contact.js";
-import {Social} from "./Components/layout/Footer/Social.js";
+import { Social } from "./Components/layout/Footer/Social.js";
 import Testimonials from "./Components/layout/Footer/Testimonials.js";
 import Breadcrums from "./Components/Breadcrums.js";
 import SearchResults from "./Components/layout/SearchResults.js";
 
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -42,13 +44,26 @@ function App() {
             <Route path="/social-links" element={<Social />} />
             <Route path="/customer-testimonials" element={<Testimonials />} />
 
-                    {/* 2. Add the new route for search results */}
-        <Route path="/search" element={<SearchResults />} />
+            {/* 2. Add the new route for search results */}
+            <Route path="/search" element={<SearchResults />} />
 
 
             <Route path="*" element={<Page404 />} />
           </Routes>
           <Footer />
+
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            pauseOnHover={true}
+            theme="dark"
+          />
         </BrowserRouter>
       </Provider>
     </div>
