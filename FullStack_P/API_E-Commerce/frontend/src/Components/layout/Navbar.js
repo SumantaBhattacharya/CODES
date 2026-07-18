@@ -1,23 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
+
 import { useSelector } from "react-redux";
+
 import { useTranslation } from "react-i18next";
+
 import Language_selector from "../Language_selector.js";
+
+import debounce from 'lodash/debounce';
+
+import { useProductsQuery, useSearchQuery} from "../../hooks/useProducts.js";
+import {useDebounce} from "../../hooks/useDebounce.js";
+
 import Autocomplete from "./Autocomplete.js";
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+import { toast } from 'react-toastify'; 
 
-  const items = useSelector((state) => state.cart);
-  const products = useSelector((state) => state.product.data);
+const Navbar = () => {
 
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const items = useSelector((state) => state.cart);
+  
+  // const products = useSelector((state) => state.product.data);
+  // fetch the data if not already catched
+  // const { data: products = [] } = useProductsQuery()
+  // const { data } = useProductsQuery();
+  // const products = data?.products ?? [];
+  const [searchValue, setSearchValue] = useState("");
+  const debouncedSearchValue = useDebounce(searchValue, 300);
+
+  // useQuery (from TanStack Query) returns an object that includes isLoading, isError, error, data. Since useSearchQuery directly returns the result of useQuery, we can destructure isLoading
+  const { data: searchData, isLoading, isError, error } = useSearchQuery(debouncedSearchValue, 8, 0);
+  
+  useEffect(() => {
+    if (isError) {
+      toast.error(`Search failed: ${error.message}`);
+    }
+  }, [isError]);
+  
+  const products = searchData?.products ?? []; // suggested products based on user search
+
+  /*Receives the raw input value from the Autocomplete component whenever the user types.
+  Updates the searchTerm state immediately (so the input stays responsive).
+  The useDebounce hook then takes that searchTerm and returns a debounced version (debouncedTerm) that only updates after the user stops typing for 300ms.
+  The useSearchQuery hook watches debouncedTerm and only triggers a new API call when it changes – preventing a request on every keystroke.*/
+  const handleSearchInputChange = (value) => {
+    setSearchValue(value);
+  };
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // Navigate to a search results page (you'll need to create this page)
+  // Navigate to a search results page
   const handleSearch = (query) => { // gets query parameter from the child Autocomplete component.
     if (!query.trim()) return;
     closeMenu();
@@ -74,7 +113,8 @@ const Navbar = () => {
     textTransform: "uppercase",
     margin: "10px 0",
     display: "block",
-    fontWeight: "700"
+    fontWeight: "700",
+    fontFamily: "Courier New"
   };
 
   const navItems = [
@@ -227,12 +267,15 @@ const Navbar = () => {
               <Autocomplete
                 onSelect={handleSelect}
                 onSearch={handleSearch} // onSearch is sending a function reference. means it passing the whole function.
-                staticData={products} // Pass the full products array from Redux, which is an array of full product objects
+                onSearchInputChange={handleSearchInputChange}
+                suggestions={products} // Pass the full products array from Redux, which is an array of full product objects
                 datakey="title" // This is a string that acts as an instruction, telling Autocomplete, "For each object you get, the string value stored inside title is to be used for searching and displaying.
                 // Since datakey is "title", this becomes: item["title"]
-
                 // When a parent component passes a prop, it overrides the default value defined in the child.
+                isLoading={isLoading}
+                // isError={isError}
                 placeholder="Search products..."
+                // placeholder for the loading message
                 customLoading={<>Loading Products...</>}
                 customStyles={{
                   background: "#1f2937",
@@ -240,8 +283,6 @@ const Navbar = () => {
                   borderRadius: "50px",
                   display: "flex",
                   alignItems: "center",
-                  border: "2px solid #60a5fa",
-                  transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   overflow: "hidden",
                   marginLeft: "10px",
                   marginRight: "25px",

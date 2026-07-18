@@ -1,107 +1,112 @@
 import React, { useState, useEffect, useCallback } from "react";
 import SuggestionsList from "./SuggestionsList.js";
-import debounce from "lodash/debounce"
+import debounce from "lodash/debounce";
+import { CiSearch } from "react-icons/ci";
 
 const Autocomplete = ({
-  onSelect, // This prop is used when user clicks a suggestion
+  onSelect,
   onSearch,
-  staticData = [],
-  datakey="", // as the default value otherwise, datakey is "title"
-  placeholder = "Search products...", // This is a default parameter, if the placeholder is empty it will fall back to this text so the input isn't blank.
-  customLoading,
-  customStyles,
+  onSearchInputChange,
+  suggestions = [], // now, the search results from the server
+  datakey = "", // title is to be used for searching by default it be an empty string
+  isLoading = false, placeholder = "Search products...", customLoading, customStyles,
 }) => {
-  const [inputValue, setInputValue] = useState("");// the user input
-  const [suggestions, setSuggestions] = useState([]);
 
-  const [loading, setloading] = useState(false);
-  const [error, setError] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  // const [suggestions, setSuggestions] = useState([]); // now the suggestions comes from matching the search results from the query
+
+  // error and loading now comes from react query
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+
   const [isFocused, setIsFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  }
+    // setInputValue(event.target.value);
+    const value = event.target.value;
+    setInputValue(value);
+    if (onSearchInputChange) {
+      onSearchInputChange(value); // Call the parent function to update the searchValue state in Navbar
+    }
+  };
 
-  const getSuggestions = (query) => { // query is the search text entered by the user.
+  /*const getSuggestions = (query) => {
     setError(null);
-    setloading(true);// loading indicator while we process the search
-
+    setLoading(true);
     try {
-      // array to store the filtered results
       let result = [];
-      // Check if staticData exists and if the search query has at least 1 character
       if (staticData && query.length > 0) {
-        // filter() is an array method that creates a new array with elements that pass a test
-        result = staticData.filter((item) => { 
-          // if datakey exits is "title", get item.title, If datakey doesn't exist, use the item itself 
-          const val = datakey ? item[datakey] : item;// item is the whole product object of an array
-          return val.toLowerCase().includes(query.toLowerCase());// Converts the item's value and search query to lowercase
-          // .includes() - Checks if the lowercase value contains the lowercase query
-          // Returns true if there's a match, false if not
-          // If no matches, result will be an empty array []
+        result = staticData.filter((item) => {
+          const val = datakey ? item[datakey] : item;
+          return val.toLowerCase().includes(query.toLowerCase());
         });
       }
       setSuggestions(result);
     } catch (err) {
       console.error("Failed to filter suggestions:", err);
-      setSuggestions([])
-    }finally{
-        setloading(false);
+      setSuggestions([]);
+    } finally {
+      setLoading(false);
     }
-  }
+  };*/
 
-  // Debouncing
-  // it limits the execution of a function call and waits for a certain amount of time before executing it again.
-  const debouncedGetSuggestions = useCallback((debounce(getSuggestions, 300)), [staticData, datakey]);// This prevents a search from happening on every single keystroke. It returns a new function that will only run getSuggestions after the user has stopped calling it for 300 milliseconds
-  // useCallback a built-in hook that comes directly from the React library and is used to memoize functions. This means it returns the exact same function instance between component re-renders, unless one of its dependencies has changed.
-  // here, it is to reset the debounce each time user re enter the input insite the textarea
-  
-  useEffect(()=>{
-    debouncedGetSuggestions(inputValue);// debouncedGetSuggestions passes the inputValue as the query argument to getSuggestions.
-    return () => debouncedGetSuggestions.cancel();// React runs the cleanup function from the previous render right before executing the effect for the next render.
-  },[inputValue, debouncedGetSuggestions])
+  // debouncedGetSuggestions is the debounced version of getSuggestions.
+  /*const debouncedGetSuggestions = useCallback( // The useCallback hook is used to memoize a function in React. the function that only changes if one of the dependencies has changed.
+    debounce(getSuggestions, 300),
+    [staticData, datakey]
+  );*/
 
-  const handleSuggestionsClick = (suggestion) => {// it put the suggestion name into the inputValue
-    setInputValue(datakey ? suggestion[datakey] : suggestion)
-    onSelect(suggestion); // navigate to suggestion path
-    setSuggestions([]);// empting it
-  }
+  /*useEffect(() => {
+    debouncedGetSuggestions(inputValue);
+    return () => debouncedGetSuggestions.cancel();
+  }, [inputValue, debouncedGetSuggestions]);*/
+
+  const handleSuggestionsClick = (suggestion) => {
+    setInputValue(datakey ? suggestion[datakey] : suggestion);
+    onSelect(suggestion);
+    // setSuggestions([]);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (onSearch) onSearch(inputValue);
-    setSuggestions([]);
-  }
-
-  const isSearchActive = isFocused || isHovered;
+    // setSuggestions([]);
+  };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", width: "100%", maxWidth: "450px" }}>
       <form
         onSubmit={handleSubmit}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        style={customStyles}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          background: "#1f2937",
+          border: isFocused ? "1px solid #fff" : "1px solid #374151",
+          borderRadius: "8px",
+          padding: "0 12px",
+          height: "44px",
+          transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+          ...customStyles,
+        }}
       >
         <button
           type="submit"
           style={{
-            background: isSearchActive ? "#fff" : "transparent",
-            color: "#fff",
+            background: "none",
+            border: "none",
+            color: isFocused ? "#fff" : "#9ca3af",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            width: "45px",
-            height: "45px",
-            borderRadius: "50px",
             cursor: "pointer",
-            border: "none",
             fontSize: "20px",
+            padding: 0,
+            marginRight: "10px",
             flexShrink: 0,
+            transition: "color 0.2s ease",
           }}
         >
-          🔍
+          <CiSearch />
         </button>
 
         <input
@@ -110,49 +115,53 @@ const Autocomplete = ({
           placeholder={placeholder}
           onChange={handleInputChange}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={() => {
+            // Tiny timeout allows suggestion item clicks to fire before container blurs
+            setTimeout(() => setIsFocused(false), 200);
+          }}
           style={{
             border: "none",
             background: "none",
             outline: "none",
             color: "#fff",
-            fontSize: "16px",
-            width: isSearchActive ? "calc(100% - 45px)" : "0",
-            padding: isSearchActive ? "0 15px" : "0",
-            opacity: isSearchActive ? 1 : 0,
-            transition: "all 0.3s ease",
-            fontFamily: "Courier New, monospace",
+            fontSize: "15px",
+            width: "100%",
+            height: "100%",
+            fontFamily: "inherit",
           }}
         />
       </form>
 
-    {(suggestions.length > 0 || loading || error) && isFocused &&
-      (<ul style={{
-        position: "absolute",
-        top: "110%",
-        left: 0,
-        right: 0,
-        background: "#1f2937",
-        border: "1px solid #374151",
-        borderRadius: "8px",
-        listStyle: "none",
-        padding: "0.5rem",
-        margin: 0,
-        maxHeight: "300px",
-        overflowY: "auto",
-        zIndex: 10,
-      }}>
-      {loading && <p className="customLoading">{customLoading}</p>}
-      {error && <p className="error">{error.message}</p>}
-        <SuggestionsList
-        datakey={datakey}
-        highlight={inputValue}
-        suggestions={suggestions}
-        onSuggestionClick={handleSuggestionsClick} // passing the function referrence
-        />
-      </ul>)
-    }
-
+      {/* Suggestion Dropdown Panel */}
+      {((suggestions.length > 0 && inputValue.trim().length > 0) || isLoading) && isFocused && (
+        <ul
+          style={{
+            position: "absolute",
+            top: "calc(100% + 6px)",
+            left: 0,
+            right: 0,
+            background: "#1f2937",
+            border: "1px solid #374151",
+            borderRadius: "8px",
+            listStyle: "none",
+            padding: "0.5rem",
+            margin: 0,
+            maxHeight: "300px",
+            overflowY: "auto",
+            zIndex: 50,
+            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
+          }}
+        >
+          {isLoading && <p className="customLoading" style={{ color: "#9ca3af", padding: "4px 8px" }}>{customLoading || "Loading..."}</p>}
+          {/* {error && <p className="error" style={{ color: "#ef4444", padding: "4px 8px" }}>{error.message}</p>} */}
+          <SuggestionsList
+            datakey={datakey}
+            highlight={inputValue}
+            suggestions={suggestions}
+            onSuggestionClick={handleSuggestionsClick}
+          />
+        </ul>
+      )}
     </div>
   );
 };
