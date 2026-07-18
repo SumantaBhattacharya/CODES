@@ -25,8 +25,7 @@ npm run start # as this project was bootstrapped with `npx create-react-app redu
 [docs-Web-Accessibility-ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
 
 ```
-npm i express cors cookie-parser jsonwebtoken zod axios --registry=https://registry.npmjs.org --verbose --loglevel=verbose --progress=true --timing
-npm i @tanstack/react-query-devtools
+npm i express cors cookie-parser jsonwebtoken zod axios react-toastify @tanstack/react-query-devtools --registry=https://registry.npmjs.org --verbose --loglevel=verbose --progress=true --timing
 ```
 
 #### ***[Web Accessibility Tutorial - Keyboard Navigation](https://youtu.be/VyWRmepESoQ?si=ArVZMIL-aYXsJKOU)***  
@@ -56,6 +55,7 @@ npm i @tanstack/react-query-devtools
 [initial-query-data](https://tanstack.com/query/latest/docs/framework/react/guides/initial-query-data)
 [tanstack-devtools](https://tanstack.com/query/latest/docs/framework/react/devtools)
 [dummyjson#products-search](https://dummyjson.com/docs/products#products-search)
+[dummyjson#products-categories](https://dummyjson.com/docs/products#products-categories)
 
 ### ***Note:*** 
 - `fetch()` *only rejects/rethrows on network errors (like no internet, DNS failure).*
@@ -328,3 +328,5 @@ npm pack @tanstack/react-query --dry-run
 - `Parallel Queries`
 - `Dependent Queries`
 - `Optimistic Queries`
+
+http://localhost:3000
