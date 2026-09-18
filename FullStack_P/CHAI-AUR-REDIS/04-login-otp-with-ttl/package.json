@@ -2,7 +2,7 @@
     "name": "04-login-otp-with-ttl",
     "version": "1.0.0",
     "private": true,
-    "description": "",
+    "description": "04-login-otp-with-ttl",
     "main": "src/index.js",
     "type": "module",
     "scripts": {
