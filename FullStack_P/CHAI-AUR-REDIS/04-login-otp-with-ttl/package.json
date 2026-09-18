@@ -2,7 +2,7 @@
     "name": "04-login-otp-with-ttl",
     "version": "1.0.0",
     "private": true,
-    "description": "04-login-otp-with-ttl",
+    "description": "04 Building a OTP verification with Redis",
     "main": "src/index.js",
     "type": "module",
     "scripts": {
