@@ -20,3 +20,9 @@ app.get redisClient.exists(KEY);
 
 - > `Set` 
     - *`store single variable`*
+
+### ***`Takeaways from 03 Site banner`***
+
+```js
+.set, .get, .del, .exists
+```
