@@ -1,0 +1,27 @@
+{
+    "name": "05-user-profile-cache-json-vs-hash",
+    "version": "1.0.0",
+    "private": true,
+    "description": "05 User profile in Redis JSON vs HASH",
+    "main": "src/index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "node --watch src/index.js"
+    },
+    "author": {
+        "name": "SUMANTA BHATTACHARYA",
+        "email": "sumanta2004@gmail.com",
+        "url": "https://github.com/SumantaBhattacharya"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SumantaBhattacharya/CODES",
+        "directory": "FullStack_P/CHAI-AUR-REDIS/05-user-profile-cache-json-vs-hash"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.2.1",
+        "ioredis": "^6.0.0"
+    }
+}
