@@ -47,6 +47,11 @@ docker system df
 docker info | findstr /i "Docker Root Dir"  
 ```
 
+```bash
+docker volume inspect chai-aur-redis_redis-data
+```
+
+
 ### **Notes**
 - `Mongoose` 
   - *is an Object Data Modeling (ODM) library*
@@ -68,3 +73,24 @@ app.get redisClient.ttl();
 
 - > `hgetall` 
   - *`gets the whole object`*
+
+- > `hget` 
+- > `hdel`
+- > `hexists`
+
+> *`Hashes` cannot store nested objects/arrays.*
+
+- > *`HSET` only stores field→value pairs inside one key*
+  - > *`hgetall` returns the object directly, When you use `hgetall`, numeric values come back as strings*
+
+> `-1` *never expire*
+
+- ***`Encoding`***
+  - *`listpack`* 
+    - *Small lists*
+  - *`quicklist`* 
+    - *Large lists*
+
+- *`Template literals always return strings`*
+- *`ioredis automatically converts primitive types like number and boolean to strings`*
+  - *`Only objects and arrays require JSON.stringify`*
