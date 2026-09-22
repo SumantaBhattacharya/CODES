@@ -1,0 +1,27 @@
+{
+    "name": "06-email-queue-with-redis-lists",
+    "version": "1.0.0",
+    "private": true,
+    "description": "06 Email queue with redis lists",
+    "main": "src/index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "node --watch src/index.js"
+    },
+    "author": {
+        "name": "SUMANTA BHATTACHARYA",
+        "email": "sumanta2004@gmail.com",
+        "url": "https://github.com/SumantaBhattacharya"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SumantaBhattacharya/CODES",
+        "directory": "FullStack_P/CHAI-AUR-REDIS/06-email-queue-with-redis-lists"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.2.1",
+        "ioredis": "^6.0.0"
+    }
+}
