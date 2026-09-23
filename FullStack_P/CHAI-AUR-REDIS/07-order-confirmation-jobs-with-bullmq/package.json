@@ -1,0 +1,17 @@
+{
+    "name": "07-order-confirmation-jobs-with-bullmq",
+    "version": "1.0.0",
+    "private": true,
+    "description": "07 Your guide to BullMQ Queue infrastructure",
+    "main": "src/index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "node --watch src/index.js"
+    },
+    "dependencies": {
+        "bullmq": "^6.3.8",
+        "express": "^5.2.1",
+        "ioredis": "^6.0.0"
+    }
+}
