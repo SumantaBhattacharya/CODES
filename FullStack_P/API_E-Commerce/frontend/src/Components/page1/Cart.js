@@ -782,16 +782,19 @@ const Cart = () => {
                                             <div style={{
                                                     fontFamily: 'Oswald',
                                                 }} className="price-label">Subtotal</div>
-                                            <div style={{
+                                            <div 
+                                            style={{
                                                     fontFamily: 'Oswald',
                                                 }} className="price-value">
                                                 ${(product.price * (product.quantity || 1)).toFixed(2)}
                                             </div>
+
                                             {product.quantity > 1 && (
                                                 <div className="price-each">
                                                     ${product.price.toFixed(2)} each
                                                 </div>
                                             )}
+                                            
                                         </div>
                                     </div>
                                 );

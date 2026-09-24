@@ -8,8 +8,6 @@ import { Loader } from "./ui/Loader.js";
 import Error from "./ui/Error.js";
 import EmptyProductsState from "./ui/EmptyProductsState .js";
 
-
-
 const Products = () => {
   const navigate = useNavigate();
 
