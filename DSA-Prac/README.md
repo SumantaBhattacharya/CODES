@@ -376,6 +376,10 @@ All Subsets (8 total):
 {B, C}
 
 {A, B, C} (the set itself)
-```
 
-In Java, you CANNOT give default values to method parameters like in some other languages (Python, JavaScript, C++). 
+```
+### **Notes**
+- In `Java`, you CANNOT give `default values` to `method parameters` like in some other languages (`Python`, `JavaScript`, `C++`). 
+
+- `Math.pow()` always returns a `double` (a decimal)
+     
